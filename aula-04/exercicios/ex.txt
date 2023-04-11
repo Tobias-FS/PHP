@@ -1,0 +1,25 @@
+1) Crie um programa que leia do console os dados de um produto,
+   quando ele acionar a opção 1 de um menu. A opção 2 deve listar
+   os dados de todos os produtos cadastrados. A opção 3 deve sair
+   do programa.
+   Um produto deve possuir descrição, estoque e preço. Crie uma
+   classe para representá-lo, com um construtor que receba os dados.
+
+2) Adicione validação para os produtos, a fim de evitar que os mesmos
+   fiquem em um estado incorreto. Um produto é válido se:
+   a) Sua descrição tiver de 2 a 100 caracteres;
+   b) Seu estoque for um número inteiro natural (>= 0);
+   c) Seu preço for um número com valor de no mínimo dez reais (10.00).
+   Quando qualquer dado estiver incorreto, faça com que seja impressa
+   uma frase explicando ao usuário o motivo.
+
+3) Adicione ao cadastro do produto uma pergunta (S/N, sendo "S" para Sim
+   e "N" para não) de se o produto é taxado. Se o produto for taxado,
+   o percentual do imposto deve ser informado e atribuído ao produto.
+   Para diferenciar um produto comum de um produto taxado, crie uma
+   classe ProdutoTaxado que estenda Produto e tenha o imposto.
+   O imposto (%) deve estar entre 0 e 50.
+   No caso de o produto ser um produto taxado, o imposto do produto deve
+   ser impresso. 
+   DICA: Use instanceof para verificar se um objeto é uma instância de uma
+   classe. Ex: if ( $obj instanceof MinhaClasse ) { /*...*/ }

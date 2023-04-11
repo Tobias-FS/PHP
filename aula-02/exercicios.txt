@@ -1,0 +1,69 @@
+// EXERCÍCIO 2:
+// Crie um menu de opções, sendo:
+// 1 - Incluir nome
+// 2 - Remover nome
+// 3 - Listar nomes
+// 4 - Sair
+// Faça com que a opção 1 realize a inclusão de um nome no array de nomes.
+// Faça com que a opção 2 remova um nome informado pelo usuário do array.
+// Faça com que a opção 3 saia do programa.
+// DICAS:
+// a) array_search() permite buscar um valor dentro de um array. Ele retorna
+//    o índice do elemento, se encontrado e false caso contrário.
+//    Exemplo: $i = array_search( 'Ana', $nomes );
+// b) unset( ) permite remover um elemento do array. É preciso indicar o elemento
+//    com seu índice. Exemplo: unset( $nomes[ 2 ] );
+ - unset() permite remover um elemento do array. É preciso indicar o elemento
+
+/ EXERCÍCIO 3:
+// Modifique o Exercício 2 para:
+// a) Listar os nomes de forma ordenada.
+// b) Limpar a tela depois da exibição do menu.
+//
+// Para (a), utilize a função sort().
+// Para (b), crie um arquivo "limparTela.php" que contenha a função
+// abaixo e a utilize:
+//
+// function limparTela() {
+//      echo "\033[2J\033[;H";  // Código POSIX para limpar a tela
+// }
+
+// Exercício 4
+// Crie um menu de opções, sendo:
+// 1 - Cadastrar pessoa
+// 2 - Remover pessoa
+// 3 - Listar pessoas
+// 4 - Sair
+//
+// Faça com que a opção 1 realize a inclusão de uma pessoa, com nome e idade.
+// Utilize uma estrutura de matriz para esse propósito.
+//
+// Faça com que a opção 2 remova um nome informado pelo usuário do array.
+// Dica: Utilize foreach para encontrar a pessoa.
+//
+// Faça com que a opção 3 liste as pessoas de forma ordenada.
+// DICA: Use a função usort() para isso. Exemplo:
+//   $nomes = [ 'Zulmira', 'Ana', 'Vanessa', 'Jorge' ];
+//   usort( $nomes, function( $nome1, $nome2 ) {
+//      if ( $nome1 == $nome2 ) return 0; // IGUAIS
+//      else if ( $nome1 > $nome2 ) return 1; // PRIMEIRO É MAIOR
+//      return -1; // SEGUNDO É MAIOR
+//   } );
+//
+// Faça com que a opção 4 saia do programa.
+
+// Exercício 5
+//
+// Modifique o Exercício 4 de forma que cada operação realizada
+// seja executada em uma função diferente. Assim, por exemplo,
+// crie funções para exibir o menu, inserir uma pessoa,
+// remover uma pessoa e listar as pessoas.
+
+// Exercício 6
+//
+// Faça com que a listagem de pessoas exiba o índice de
+// cada pessoa. Então, crie uma opção no menu para Alterar
+// uma pessoa que reutilize a listagem e solicite o índice
+// da pessoa a ser alterada. Em seguida, solicite os dados
+// da pessoa, para que sobrescrevam a pessoa no índice
+// encontrado.

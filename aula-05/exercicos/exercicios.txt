@@ -1,0 +1,26 @@
+1) Crie uma classe Produto, contendo os atributos código, descrição, estoque e preço,
+   que pertença ao namespace Acme. Coloque-a no arquivo "produto.php".
+   O estoque de um produto não deve ser inferior a zero (0).
+   Em caso de o mesmo for atribuído para um valor negativo, uma exceção deve ser lançada.
+2) Em um arquivo, "estoque.php", crie uma pequena aplicação para gerir o estoque de produtos.
+   Para isso, crie um array de objetos de Produto com os produtos da loja Acme.
+   Os produtos devem ser instanciados com os atributos e uma quantidade superior a zero.
+   Então, crie um menu que permita:
+   1) Aumentar o estoque de um produto
+   2) Reduzir o estoque de um produto
+   3) Sair
+   Ao escolher a opção de aumentar o estoque, o usuário deve informar o código do produto
+   desejado. Ao escolher a opção Reduzir, o usuário deve informar o código e a quantidade
+   a ser reduzida.
+3) Modifique as opções da aplicação para ficar como o menu abaixo:
+   1) Aumentar o estoque de um produto
+   2) Reduzir o estoque de um produto
+   3) Salvar produtos
+   4) Carregar produtos
+   5) Sair
+   Crie uma interface RepositorioProduto, que contenha os métodos os seguintes métodos
+    salvar( array $produtos );
+    carregar(): array;
+   Crie uma implementação da interface que armazene os produtos em um arquivo .CSV.
+   A extensão Comma-Separated Values (CSV) guarda os valores de um registro de forma
+   separada por vírgula. Cada registro ocupa uma linha.
