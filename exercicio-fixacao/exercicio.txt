@@ -1,0 +1,92 @@
+CEFET/RJ - Unidade Nova Friburgo – Bacharelado em Sistemas de Informação
+Programação para a Web – Prof. Thiago Delgado Pinto
+EXERCÍCIOS DE FIXAÇÃO
+
+1) Crie uma função que receba uma data no formato dia/mês/ano e a retorne com o mês por
+extenso. Por exemplo, se a entrada for “21/09/2017”, a saída deve ser “21 de Setembro de
+2017.”
+
+2) Crie uma função que retorne formatado um número de telefone recebido. O formato deve
+estar acordo com os exemplos fornecidos abaixo:
+    Dígitos     Exemplo de Entrada      Exemplo de Saída
+    8           30044000                3004 4000
+    10          2225271727              (22) 2527-1727
+    11          22987654321             (22) 9-8765-4321
+    11, mas     08007024000             0800 702 4000
+    começa com 
+    0800 ou 0300 
+Observação: Se o número recebido pela função contiver algum caractere não numérico,
+a função deve retornar o próprio número recebido. O mesmo comportamento deve ocorrer
+caso a quantidade de dígitos do número não corresponder aos exemplificados na tabela
+acima.
+
+3) Crie uma função que receba, via passagem por referência, um array de números de
+telefone não formatados e formate cada telefone desse array com a função construída
+anteriormente.
+
+4) Crie uma função que receba um array de números de telefone (formatados ou não) e retorne
+os telefones repetidos desse array (uma ocorrência de cada número repetido).
+
+5) Dado o array de inventores abaixo:
+    $inventores = [
+    [ "nome" => 'Albert', "sobrenome" => 'Einstein', "nasc" => 1879,
+    "morte" => 1955 ],
+    [ "nome" => 'Isaac', "sobrenome" => 'Newton', "nasc" => 1643,
+    "morte" => 1727 ],
+    [ "nome" => 'Galileo', "sobrenome" => 'Galilei', "nasc" => 1564,
+    "morte" => 1642 ],
+    [ "nome" => 'Nicolaus', "sobrenome" => 'Copernicus', "nasc" => 1473,
+    "morte" => 1543 ],
+    [ "nome" => 'Ada', "sobrenome" => 'Lovelace', "nasc" => 1815,
+    "morte" => 1852 ]
+    ];
+Obs.: A chave “nasc” indica o nascimento do inventor.
+
+a) Crie uma função que receba o array de inventores e retorne outro array contendo o
+sobrenome de cada inventor e uma chave indicando quantos anos viveu. Por exemplo,
+se o array de inventores tivesse apenas Einstein, seria retornado um array como o
+abaixo:
+
+    [ [ "sobrenome" => 'Einstein', "viveu" => 77 ] ]
+
+    b) Crie uma função que receba o array de inventores e retorne a média de anos vividos
+    por eles.
+    c) Crie uma função que receba o array de inventores e número de um século (ex.: 16) e
+    retorne somente os inventores que viveram nele, mesmo que parcialmente.
+    d) Crie uma função que retorne os inventores ordenados pelo sobrenome.
+    6) Crie uma função que receba o array abaixo e retorne outro array que contabilize o número
+    de ocorrências de cada palavra.
+    $dados = [ 'carro', 'carro', 'caminhão', 'caminhão', 'bicicleta',
+    'caminhada', 'carro', 'van', 'bicicleta', 'caminhada', 'carro',
+    'van', 'carro', 'caminhão' ];
+
+7) Usando um software de planilha eletrônica (ex.: Excel, Calc), crie uma planilha
+"produtos.csv", como a abaixo, no formato Comma-Separated Values (CSV) com UTF8 (sem BOM):
+    Produto Estoque Preço
+    Refrigerante 20 3,00
+    Salgado 50 3,50
+    Água 15 2,00
+    Bombom 30 1,00
+    Sorvete 10 4,00
+    Brigadeiro 12 3,00
+
+    a) Crie um script PHP que leia o arquivo e gere o arquivo "produtos.html", em HTML5,
+    com a tabela de produtos ordenada pelo nome. Use nowdoc ou heredoc para produzir
+    o HTML. Certifique-se de que a tabela gerada possui as seções <thead> e <tbody>.
+
+    b) Modifique o script anterior para apresentar a totalização do estoque, em uma seção
+    <tfoot> da tabela produzida.
+
+8) Crie uma função removerDiacriticos que remova de um texto, fornecido por
+parâmetro, os diacríticos de vogais acentuadas com acento agudo, acento grave, trema,
+acento circunflexo e til, além de remover a cedilha da consoante c.
+
+9) Crie uma função removerPontuacao que remova todos os espaços de um texto, além das
+seguintes pontuações: vírgula, traço, ponto, ponto-e-vírgula, dois pontos, exclamação e
+ponto-de-interrogação.
+
+10) Crie uma função palindromo que verifique se um texto é um palíndromo (se o texto lido
+ao contrário é igual ao informado). Use, em sua construção, as funções
+removerPontuacao e removerDiacriticos, criadas anteriormente. Teste sua função
+com os exemplos a seguir: “Saíram o tio e oito marias”, “Seco de raiva, coloco no colo
+caviar e doces.”, “Socorram-me, subi no ônibus em Marrocos!”, “A diva em Argel alegrame a vida.“, “Sá da tapas e sapatadas”.

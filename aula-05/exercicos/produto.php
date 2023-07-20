@@ -2,64 +2,45 @@
 
 namespace Acme;
 
+use Exception;
+
 class Produto {
 
-    private $codigo;
-    private $descricao;
-    private $estoque;
-    private $preco;
+    private $codigo = 0;
+    private $descricao = '';
+    private $estoque = 0;
+    private $preco = 0;
 
-    public function __construct( $codigo, $descricao, $estoque, $preco ) {
-
+    function __construct( $codigo, $descricao, $estoque, $preco ) {
         $this->setCodigo( $codigo );
         $this->setDescricao( $descricao );
         $this->setEstoque( $estoque );
         $this->setPreco( $preco );
-
     }
 
-    public function getCodigo() {
-        return $this->codigo;
-    }
-    
-    public function getDescricao() {
-        return $this->descricao;
-    }
-
-    public function getEstoque() {
-        return $this->estoque;
-    }
-
-    public function getPreco() {
-        return $this->preco;
-    }
-
-    public function setCodigo( $valor ) {
+    function getCodigo() { return $this->codigo; }
+    function setCodigo( $valor ) {
         $this->codigo = $valor;
     }
 
-    public function setDescricao( $valor ) {
+    function getDescricao() { return $this->descricao; }
+    function setDescricao( $valor ) {
         $this->descricao = $valor;
     }
 
-    public function setEstoque( $valor ) {
+    function getEstoque() { return $this->estoque; }
+    function setEstoque( $valor ) {
 
-        if ( $valor < 0 )
-            throw new \Exception( 'Estoque deve ser um valor postivo.' );
+        if ( $valor < 0 ) {
+            throw new Exception( 'O valor do estoque não pode ser um numero negativo' );
+        }
 
         $this->estoque = $valor;
     }
 
-    public function setPreco( $valor ) {
+    function getPreco() { return $this->preco; }
+    function setPreco( $valor ) {
         $this->preco = $valor;
-    }
-
-    public function aumentarEstoque( $valor ) {
-        $this->estoque += $valor;
-    }
-
-    public function diminuirEstoque( $valor ) {
-        $this->estoque -= $valor;
     }
 
 }

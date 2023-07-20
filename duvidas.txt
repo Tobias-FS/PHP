@@ -1,0 +1,46 @@
+Qual a forma certa de fazer esse foreach
+function formtarArrayDeTelefones( &$arr ) {
+    foreach ( $arr as &$tel ) {
+        $tel = formatarTelefones( $tel );        
+    } 
+}
+
+Porque com array_key_exists não funciona
+function telefonesRepetidos( $arr ) {
+    $novoArray = [];
+    foreach ( $arr as $tel ) {
+        if ( ! in_array( $tel, $novoArray ) )
+            $novoArray []= $tel;     
+    } 
+
+    return $novoArray;
+}
+
+Porque a funcão de cima não funciona
+// function numeroDeOcorrencias( $arr ) {
+//     $novoArray = [];
+//     foreach ( $arr as $dados ) {
+//         if ( array_key_exists( $dados, $novoArray ) )
+//             $novoArray[ $dados ] []= $novoArray[ $dados ] += 1;
+//         $novoArray []= [ $dados => 1 ] ;
+//     }
+//     return $novoArray;
+// }
+
+function numeroDeOcorrencias( $arr ) {
+    $novoArray = [];
+    foreach ( $arr as $dados ) {
+        if ( array_key_exists( $dados, $novoArray ) )
+            $novoArray[ $dados ] += 1;
+        else
+            $novoArray[ $dados ] = 1 ;
+    }
+    return $novoArray;
+}
+
+Pra que serve o codigo no RuntimeException
+
+- Padrôes GOF => ganf of four
+- Desing Patterns: Elements of Reusable Object-Oriented Softwate
+- Padrôes de Projetos de Aplicações Corporativas( PofEAA )
+- Compose -> Packagist ( vendor/sautoload.php )

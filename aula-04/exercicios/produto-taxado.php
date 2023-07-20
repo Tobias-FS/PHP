@@ -1,33 +1,29 @@
 <?php
 
-require_once 'produto.php';
-// const TIPO = 'T';
+require_once './produto.php';
 
-class produtoTaxado extends Produto {
+const VALOR_MININO_DO_IMPOSTO = 0;
+const VALOR_MAXIMO_DO_IMPOSTO = 50;
 
-    private $percentual = 0;
-    private $tipo = 'T';
+class ProdutoTaxado extends Produto {
 
-    public function __construct( $descricao, $estoque, $preco, $percentual ) {
+    private $imposto = 0;
+
+    function __construct( string $descricao, int $estoque, float $preco, int $imposto ) {
         parent::__construct( $descricao, $estoque, $preco );
-        $this->setTaxa( $percentual );
+        $this->setImposto( $imposto );
     }
 
-    public function getTipo() {
-        return $this->tipo;
+    function setImposto( int $valor ) {
+        if ( $valor < VALOR_MININO_DO_IMPOSTO && $valor > VALOR_MAXIMO_DO_IMPOSTO ) {
+            echo 'O imposto (%) deve estar entre 0 e 50', PHP_EOL;
+            return;
+        } else
+            $this->imposto = $valor;
     }
 
-    public function getTaxa() {
-        return $this->percentual;
-    }
-
-    public function setTaxa( $percentual ) {
-
-        if ( is_numeric( $percentual ) && $percentual < 0 && $percentual > 100 ) {
-            echo 'O imposto (%) deve estar entre 0 e 50.', PHP_EOL;
-        }
-
-        $this->percentual = $percentual;
+    function getImposto() {
+        return $this->imposto;
     }
 
 }

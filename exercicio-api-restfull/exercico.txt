@@ -1,0 +1,42 @@
+Exercícios – API RESTful – v1.1
+
+1) A empresa Xpto precisa criar um simples blog em que seus funcionários consigam
+postar notícias. Uma notícia deve conter Título, Criação (data e hora), Conteúdo e
+Usuário (nome). A data e hora de criação deve ser gerada automaticamente pelo
+servidor.
+Crie uma API RESTful que receba e gere dados em formato JSON que permita:
+    a) Obter todas as notícias;
+    b) Obter uma notícia específica;
+    c) Cadastrar uma notícia;
+    d) Remover uma notifica específica;
+    e) Alterar uma notícia específica.
+Utilize um banco de dados MySQL para manter as notícias, através de uma classe
+que represente um Repositório de notícias. Certifique-se de utilizar os códigos de
+status HTTP mais apropriados para cada operação realizada, os cabeçalhos corretos
+(também na hora de realizar a requisição!) e de se proteger contra ataques de injeção
+de script e SQL na API.
+
+2) Modifique a API anterior para também permitir o cadastro e alteração de notícias
+através do formato de formulário (x-www-formurlencoded).
+Dica: Verifique o cabeçalho da requisição para determinar o formato dos dados
+enviados na requisição.
+
+3) Modifique a API anterior de forma a permitir que os produtos possam ser obtidos
+tanto em formato JSON quanto em formato HTML (como um arquivo contendo
+uma tabela com a listagem). Para determinar qual o formato, aceite um parâmetro
+"formato" passado pela URL (ex: http://localhost/acme/produtos?formato=html).
+No caso de não ser informado o formato, assuma JSON.
+
+4) Modifique o exercício anterior para que, caso o parâmetro "formato" não seja
+informado, mas o cabeçalho "Accept" seja informado (com o formato MIME
+desejado, tal como "text/html" ou "application/json"), seja retornada a listagem de
+produtos no formato escolhido (html ou json).
+
+5) Faça com que a URL utilizada para obter todas as notícias aceite o parâmetro
+"filtro", que seja capaz de filtrar as notícias para retornar apenas as que contenham
+o título, a data ou o conteúdo com o valor informado (ex.: "filtro=").
+
+6) Faça com que a URL utilizada para obter todas as notícias aceite os parâmetros
+opcionais "ordem" e "desc". O parâmetro "ordem" indica o campo de ordenação
+das notícias (ex. "ordem=titulo" faz ordenar pelo título). Se o parâmetro "desc" for
+informado com valor "1" (isso é, "desc=1"), a ordenação deve ser decrescente.

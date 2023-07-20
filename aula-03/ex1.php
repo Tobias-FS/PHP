@@ -1,22 +1,20 @@
 <?php
 
-function dataPorExtenso( $data ) {
-    
-    $mes = [ 1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho' ];
+function dataPorExtenso( string $data ) {
+
+    $meses = [
+        1 => 'janeiro',
+        'fevereiro',
+        'março'
+    ];
 
     $partes = explode( '/', $data );
+    [ $dia, $mes, $ano ] = $partes;
 
-    // $dataPorEstenso = [ $partes[ 0 ], ' de ', $mes[ ( int ) $partes[ 1 ] ], ' de ' , $partes[ 2 ]];
-
-    // return $res = implode( ' ', $dataPorEstenso );
-
-    return $partes[ 0 ]. ' de '. $mes[ ( int ) $partes[ 1 ] ]. ' de ' . $partes[ 2 ];
-
+    echo "{$dia} {$meses[ (int) $mes ]} {$ano}";
 
 }
 
-$data = readline( 'Informe uma data (dd/mm/aa): ');
-
-echo dataPorExtenso( $data ), PHP_EOL;
+DataPorExtenso( "17/03/2023" );
 
 ?>

@@ -1,0 +1,38 @@
+1) A indústria Acme precisa controlar suas matérias-primas, utilizadas
+   no processo produtivo. Uma matéria-prima possui descrição, quantidade,
+   custo e categoria. Uma categoria possui nome.
+   Dessa forma, crie uma pequena aplicação PHP para a web, capaz de
+   manter as informações das matérias-primas. Nela, é preciso:
+a) Ter as entidades modeladas como classes;
+b) Ter repositório(s) para abstrair a persistência dos dados;
+c) Ter um banco de dados relacional MySQL normalizado, com as
+   tabelas correspondentes.
+As funcionalidades requeridas são:
+    i)  Listagem das matérias-primas com suas categorias, em forma
+        de tabela. No fim da listagem deve ter a média de custo
+        das matérias-primas.
+    ii) Cadastro de matéria-prima, com a seleção da categoria através
+        de um campo de seleção (select).
+    iii) Alteração de matérias-primas, que deve exibir todos os campos,
+        incluindo a categoria de forma selecionada.
+    iv) Remoção da matéria-prima.
+
+
+SQL 
+CREATE TABLE categoria (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(60) NOT NULL,
+    CONSTRAINT `pk_categoria` PRIMARY KEY( id ),
+    CONSTRAINT `unq_categoria__nome` UNIQUE( nome )
+) ENGINE=INNODB;
+CREATE TABLE materia_prima (
+    id INT NOT NULL AUTO_INCREMENT,
+    descricao VARCHAR(60) NOT NULL,
+    quantidade INT NOT NULL DEFAULT 0,
+    custo DECIMAL(6, 2) NOT NULL,
+    categoria_id INT NOT NULL,
+    CONSTRAINT `pk_materia_prima` PRIMARY KEY( id ),
+    CONSTRAINT `unq_materia_prima__descricao` UNIQUE( descricao ),
+    CONSTRAINT `fk_materia_prima__categoria_id` FOREIGN KEY ( categoria_id )
+        REFERENCES categoria( id ) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=INNODB;

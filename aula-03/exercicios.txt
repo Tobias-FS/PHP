@@ -1,0 +1,5 @@
+EXERCÍCIO 1
+Crie uma função dataPorExtenso() que receba uma data no formato
+"dd/mm/aaaa" e retorne a data com o mês por extenso. Por exemplo,
+"17/03/2023" deve retornar 17 de Março de 2023
+

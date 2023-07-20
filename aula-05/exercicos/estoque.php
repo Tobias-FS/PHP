@@ -1,101 +1,108 @@
 <?php
 
-require_once 'produto.php';
-require_once 'repositorio-produto-em-csv.php';
+require_once './repositorio-prduto-em-csv.php';
+require_once './produto.php';
 
+use \Acme\Produto;
 
-use Acme\Produto;
+const OPCAO_AUMENTAR_ESTOQUE = 1;
+const OPCAO_REDUZIR_ESTOQUE = 2;
+const OPCAO_SALVAR_PRODUTOS = 3;
+const OPCAO_SAIR = 4;
 
-const AUMENTAR_ESTOQUE = 1;
-const DIMINUIR_ESTOQUE = 2;
-const SALVAR_PRODUTOS = 3;
-const CARREGAR_PRODUTOS = 4;
-const LISTAR = 5;
-const SAIR = 6;
+$produtos = [ 
+    new Produto( 1 ,'Produto1', 10, 23 ),
+    new Produto( 2,'Produto1', 10, 23 ),
+    new Produto( 3,'Produto1', 10, 23 ),
+    new Produto( 4,'Produto1', 10, 23 ),
 
-$produtos = [
-    new Produto( 001, 'Fanta', 13, 4.50 ),
-    new Produto( 002, 'Goiaba', 13, 4.50 ),
-    new Produto( 003, 'Banana', 13, 4.50 ),
-    new Produto( 004, 'Guarana', 3, 2.50 )
-];
+ ];
 
 do {
 
-    $opcao = menu();
+    echo 'MENU', PHP_EOL;
+    echo '1 - Aumentar o estoque', PHP_EOL;
+    echo '2 - Reduzir o estoque', PHP_EOL;
+    echo '3 - Salvar produtos', PHP_EOL;
+    echo '4 - Sair', PHP_EOL;
+
+    $opcao = readline( 'Digite a opção desejada: ' );
 
     switch ( $opcao ) {
+        case OPCAO_AUMENTAR_ESTOQUE: aumentarEstoque( $produtos ); break;
+        case OPCAO_REDUZIR_ESTOQUE: diminuirEstoque( $produtos ); break;
+        case OPCAO_REDUZIR_ESTOQUE: diminuirEstoque( $produtos ); break;
+        case OPCAO_SALVAR_PRODUTOS: salvarProdtuos( $produtos ); break;
+    }
 
-        case AUMENTAR_ESTOQUE: aumentarEstoque( $produtos ); break;
-        case DIMINUIR_ESTOQUE: diminuirEstoque( $produtos ); break;
-        case LISTAR: listar( $produtos ); break;
-        case SALVAR_PRODUTOS: salvarProdutos( $produtos ); break;
-        case CARREGAR_PRODUTOS: carregarProdutos( $produtos ); break;
+} while( $opcao !== OPCAO_SAIR );
 
-    } 
+function listar( $produtos ) {
 
-} while ( $opcao != SAIR );
-
-function menu() {
-
-    echo 'Menu', PHP_EOL;
-    echo '1 - Aumentar estoque', PHP_EOL;
-    echo '2 - Diminuir estoque', PHP_EOL;
-    echo '3 - Salvar produtos', PHP_EOL;
-    echo '4 - Carregar produtos', PHP_EOL;
-    echo '5 - Listar estoque', PHP_EOL;
-    echo '6 - Sair', PHP_EOL;
-
-    return readline( 'Opção: ' );
+    if ( empty( $produtos ) ) {
+        echo 'Sem produtos para listar!', PHP_EOL;
+        return;
+    } else {
+        foreach( $produtos as $p ) {
+            echo 'Código: ' . $p->getCodigo() . ' '
+                . 'Descrição: ' . $p->getDescricao() . ' '
+                . 'Estoque: ' . $p->getEstoque() . ' '
+                . 'Preço: ' . $p->getPreco(), PHP_EOL;
+        }
+    }
 
 }
 
-function aumentarEstoque( &$produtos ) {
+function aumentarEStoque( &$produtos ) {
 
-    $codigo = readline( "Codigo do produto desejado: \n" );
-    $quantidade = readline( "Quantidade a set aumentada: \n" );
+    listar( $produtos );
 
-    foreach ( $produtos as $p ) {
-        
-        if ( $p->getCodigo() == $codigo )
-            $p->aumentarEstoque( $quantidade );
+    $codigo = readline( 'Digite o código do produto que deseja alterar o estoque: ' );
+    $quantida = readline( 'Digite a quantidade de novos produtos: ' );
+
+    foreach( $produtos as $p ) {
+        if ( $p->getCodigo() == $codigo ) {
+            $estoque = $p->getEstoque();
+            $p->setEstoque( $estoque += $quantida );
+            echo 'Alterado com sucesso!', PHP_EOL;
+            return;
+        } else {
+            echo 'Prodstuo não econtrado!', PHP_EOL;
+            return;
+        }
     }
 
 }
 
 function diminuirEstoque( &$produtos ) {
 
-    $codigo = readline( "Codigo do produto desejado: \n" );
-    $quantidade = readline( "Quantidade a set aumentada: \n" );
+    listar( $produtos );
 
-    foreach ( $produtos as $p ) {
-        
-        if ( $p->getCodigo() == $codigo )
-            $p->diminuirEstoque( $quantidade );
+    $codigo = readline( 'Digite o código do produto que deseja alterar o estoque: ' );
+    $quantida = readline( 'Digite a quantidade de novos produtos: ' );
+
+    if ( empty( $produtos ) ) {
+        echo 'Nenhum produto para ser retirado', PHP_EOL;
+        return;
+    } else {
+        foreach ( $produtos as $p ) {
+            if ( $p->getCodigo() == $codigo ) {
+                $estoque = $p->getEstoque();
+                $p->setEStoque( $estoque -= $quantida );
+                echo 'Alterado com sucesso!', PHP_EOL;
+                return;
+            } else {
+                echo 'Prodstuo não econtrado!', PHP_EOL;
+                return;
+            }
+        }
     }
 
 }
 
-function listar( $produtos ) {
-
-    foreach ( $produtos as $p ) {
-        echo 'Codigo: ', $p->getCodigo(), ' Descrição: ', $p->getDescricao(), ' Estoque: ', $p->getEstoque(), ' Preço: ', $p->getPreco(), PHP_EOL;
-    }
-
-}
-
-function salvarProdutos( &$produtos ) {
-
-    $cvs = new RepositorioProdutoEmCsv();
-    $cvs->salvar( $produtos );
-
-}
-
-function carregarProdutos( array &$produtos ) {
-
-    $cvs = new RepositorioProdutoEmCsv();
-    $produtos = $cvs->carregar();
-
+function salvarProdtuos( &$produtos ) {
+    $repositorio = new RepositorioPrdutoEmCsv();
+    $repositorio->salvar( $produtos );
 }
 
 ?>

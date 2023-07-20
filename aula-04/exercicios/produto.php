@@ -1,71 +1,62 @@
 <?php
 
-const TAMANHO_MININO_DESCRICAO = 2;
-const TAMANHO_MAXIMO_DESCRICAO = 2;
-const TIPO = 'NT';
+const TAMANHO_MINIMO_DA_DESCRICAO = 2;
+const TAMANHO_MAXIMO_DA_DESCRICAO = 100;
+const VALOR_MINIMO_D0_ESTOQUE = 0;
+const VALOR_MINIMO_D0_PRECO = 10;
 
 class Produto {
 
-
     private $descricao = '';
     private $estoque = 0;
-    private $preco = 0.00;
-    private $tipo = 'NT';
+    private $preco = 0;
 
-    public function __construct( $descricao, $estoque, $preco ) {
-        
+    function __construct( string $descricao, int $estoque, float $preco ) {
         $this->setDescricao( $descricao );
         $this->setEstoque( $estoque );
         $this->setPreco( $preco );
-
     }
 
-        public function getTipo() {
-            return $this->tipo;
+    function setDescricao( string $valor ) {
+        $tam = mb_strlen( $valor );
+        
+        if ( $tam < TAMANHO_MINIMO_DA_DESCRICAO && $tam > TAMANHO_MAXIMO_DA_DESCRICAO ) {
+            echo 'A descrição deve ter de 2 a 100 caracteres', PHP_EOL;
+            return;
+        } else {
+            $this->descricao = $valor;
         }
-    
+    }
 
-    public function getDescricao() {
+    function getDescricao() {
         return $this->descricao;
     }
 
+    function setEstoque( int $valor ) {
 
-    public function setDescricao( $valor ) {
-        $tamanho = mb_strlen( $valor );
-
-        if ( $tamanho <= TAMANHO_MININO_DESCRICAO && $tamanho >= TAMANHO_MAXIMO_DESCRICAO ) {
-            echo 'A descricão deve estar entre 2 a 100 caracteres', PHP_EOL;
+        if ( $valor < VALOR_MINIMO_D0_ESTOQUE  ) {
+            echo 'O estoque deve ser maior que zero', PHP_EOL;
             return;
-        }
-        $this->descricao;
+        } else
+            $this->estoque = $valor;
     }
 
-    public function getEstoque() {
+    function getEstoque() {
         return $this->estoque;
     }
 
-    public function setEstoque( $valor ) {
+    function setPreco( float $valor ) {
 
-        if ( is_numeric( $valor ) && $valor >= 0 ) {
-            $this->estoque = $valor;
+        if ( $valor < VALOR_MINIMO_D0_PRECO ) {
+            echo 'O minmo para o produto é de R$10,00', PHP_EOL;
             return;
-        }
-
-        echo 'Estoque tem que ser um número acima de 0', PHP_EOL;
-
+        } else
+            $this->preco = $valor;
     }
 
-    public function getPreco() {
+    function getPreco() {
         return $this->preco;
     }
-
-    public function setPreco( $valor ) {
-
-        if ( is_numeric( $valor ) && $valor > 10.0 ) {
-            $this->preco = $valor;
-            return;
-        }
-
-        echo 'O preço minimo é 10 reais ', PHP_EOL;
-    }
 }
+
+?>

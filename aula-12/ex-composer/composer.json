@@ -1,0 +1,17 @@
+{
+    "name": "saloca/ex-composer",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Saloca\\ExComposer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tobias Ferreira",
+            "email": "tobias.fs404@gmail.com"
+        }
+    ],
+    "require": {}
+}
